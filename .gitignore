@@ -1,0 +1,13 @@
+# files to be ignored by git
+
+#all the data
+/data/*
+**.cfl
+**.hdr
+**.list
+**.raw
+
+#python plotting tools
+
+/src/*
+
