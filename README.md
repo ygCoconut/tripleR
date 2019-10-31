@@ -7,29 +7,31 @@ The tool used to perform the reconstructions is BART (Berkeley Advanced Reconstr
 
 This Project delivers code that allows you to reconstruct radial undersampled and cartesian data from phillips scanners.
 
-Prerequisites:
+## Prerequisites:
 	- Install the right bart version (bart_HMS). This version is a homebrew version, so don't expect to get the code running without it! You will need to implement certain functions by yourself as they are not published yet.
-		-- Phillips sequence reader (bart paradiseread).
+		- Phillips sequence reader (bart paradiseread).
 	- Also not available on git:
-		-- paradise_angle.py (src folder content not in git)
-		-- b0cor.py (src folder content not in git)
+		- paradise_angle.py (src folder content not in git)
+		- b0cor.py (src folder content not in git)
 	- set up bart for matlab following the instructions of the bart repo( You will need the "readcfl.mat" function of bart )
 	- set up bart for python following the instructions of the bart repo ( You will need the "readcfl.py" function of bart )
 	- get paradiseangle.py and set up its $PATH and access to bart with $TOOLBOX_PATH
 	- (optional) Install the arrayshow matlab viewer or/and the bart viewer.
 	- https://github.com/tsumpf/arrShow
 
-How To:
+## How To:
 
 1) Copy the patient folder to this folder and rename the patient folder accordingly:
 Gender_MMDDYYYYTIME (--> no spaces)
 
-2) a) Copy the content of the folder "CopyTheContent" inside the patient folder.
-2) b) Copy the files runcart.sh, runradial.sh, saveyourbartasRADIALdicom.m, saveyourbartasCARTESIANdicom.m and the folder jobs/ to your patient folder
-2) c) source the files mentioned above and only modify the files inside of the jobs folder in your local patient folder.
+2) Options:
+	- a) Copy the content of the folder "CopyTheContent" inside the patient folder.
+	- b) Copy the files runcart.sh, runradial.sh, saveyourbartasRADIALdicom.mat, saveyourbartasCARTESIANdicom.mat and the folder jobs/ to your patient folder
+	- c) source the files mentioned above and only modify the files inside of the jobs folder in your local patient folder.
 
 3) Synchronise (Upload) your patient folder to the O2 cluster.
 In WSL or unix with rsync:
+
 $ 	rsync -avP yourpatientfolder/ nw92@transfer.rc.hms.harvard.edu:/home/nw92/RealTimeRecoCSproject/yourpatientfolder/
 
 4) Open the shell script "run.sh" and modify the parameters that are indicated in the top of the shell script:
@@ -47,6 +49,7 @@ $ 	rsync -avP yourpatientfolder/ nw92@transfer.rc.hms.harvard.edu:/home/nw92/Rea
 	- To run the matlab code on its own (should not be needed), follow the instructions written in the Matlab code.
 
 6) Run the gpumaster.sh file, which is located inside the folder "jobs/":
+
 $ 	sbatch gpumaster.sh
 
 6) Take care of noting down the runtime for the algorithm.
